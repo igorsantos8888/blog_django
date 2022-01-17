@@ -21,6 +21,7 @@ class PostIndex(ListView):
         e exibem os posts se estiverem com a flag de publicado
         '''
         qs = super().get_queryset()
+        qs = qs.select_related('categoria_post')
         qs = qs.order_by('-id').filter(publicado_post=True)
 
         qs = qs.annotate(

@@ -57,16 +57,21 @@
             <form method="POST" action="#envia_comentario">
                 {% csrf_token %}
                 {% include 'parciais/_messages.html' %}
-                <table class="table">
-                    {{ form }}
-                    
+                
+                    {% for visible_field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ visible_field.label_tag }} <br>
+                            {{ visible_field}}
+                            {{ visible_field.errors }}
+                        </div>
+                    {% endfor %}
                     <tr>
                         <td colspan="2">
                             <input id="envia_comentario" type="submit" class="btn btn-primary"
                                 value="Enviar">
                         </td>
                     </tr>
-                </table>
+                
             </form>
 
 
